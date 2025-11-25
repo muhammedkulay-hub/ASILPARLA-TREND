@@ -1,0 +1,67 @@
+{
+  "include": [
+    "services",
+    "automation",
+    "monitoring",
+    "compliance",
+    "tools",
+    "tests",
+    "system_enhancements",
+    "main.py",
+    "db_test.py"
+  ],
+  "exclude": [
+    "**/__pycache__",
+    "**/node_modules",
+    "**/dist",
+    "**/build",
+    "**/.git",
+    "**/venv",
+    "**/.venv",
+    "**/env",
+    "**/.env"
+  ],
+  "defineConstant": {
+    "DEBUG": false
+  },
+  "stubPath": "",
+  "venvPath": ".",
+  "venv": "",
+  "pythonVersion": "3.12",
+  "pythonPlatform": "All",
+  "executionEnvironments": [
+    {
+      "root": "services/api",
+      "pythonVersion": "3.12",
+      "pythonPlatform": "All",
+      "extraPaths": [
+        "services/api/app"
+      ]
+    },
+    {
+      "root": "automation",
+      "pythonVersion": "3.12"
+    },
+    {
+      "root": "monitoring",
+      "pythonVersion": "3.12"
+    },
+    {
+      "root": ".",
+      "pythonVersion": "3.12",
+      "extraPaths": [
+        "services/api/app"
+      ]
+    }
+  ],
+  "typeCheckingMode": "basic",
+  "useLibraryCodeForTypes": true,
+  "autoImportCompletions": true,
+  "reportMissingImports": true,
+  "reportMissingTypeStubs": false,
+  "reportUnusedImport": true,
+  "reportUnusedClass": false,
+  "reportUnusedFunction": false,
+  "reportUnusedVariable": false
+}
+
