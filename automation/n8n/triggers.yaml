@@ -1,0 +1,158 @@
+# n8n Webhook Triggers Configuration for AsilParla v1.17.02
+# These webhook paths should be configured in n8n workflows
+
+triggers:
+  # Order Management Triggers
+  on_new_order:
+    webhook_path: "/webhook/trendyol-order-sync"
+    method: "POST"
+    description: "Triggered when new Trendyol orders are received"
+    payload_schema:
+      seller_id: string
+      order_id: string
+      order_date: string
+      order_status: string
+      total_amount: number
+      items: array
+    workflow: "order_sync"
+    
+  on_order_status_change:
+    webhook_path: "/webhook/order-status-change"
+    method: "POST"
+    description: "Triggered when order status changes"
+    payload_schema:
+      order_id: string
+      old_status: string
+      new_status: string
+      changed_at: string
+    workflow: "order_sync"
+  
+  # Inventory Management Triggers
+  on_low_stock:
+    webhook_path: "/webhook/low-stock-alert"
+    method: "POST"
+    description: "Triggered when product stock falls below threshold"
+    payload_schema:
+      product_id: string
+      product_name: string
+      current_stock: number
+      threshold: number
+      supplier_id: string
+    workflow: "supplier_sync"
+    
+  on_stock_update:
+    webhook_path: "/webhook/stock-update"
+    method: "POST"
+    description: "Triggered when stock is updated from supplier"
+    payload_schema:
+      supplier_id: string
+      product_id: string
+      new_stock: number
+      updated_at: string
+    workflow: "supplier_sync"
+  
+  # Penalty Management Triggers
+  on_penalty_received:
+    webhook_path: "/webhook/penalty-dispute"
+    method: "POST"
+    description: "Triggered when a new penalty is received from Trendyol"
+    payload_schema:
+      penalty_id: string
+      penalty_type: string
+      amount: number
+      reason: string
+      order_id: string
+      received_at: string
+    workflow: "penalty_alert"
+    
+  on_penalty_disputed:
+    webhook_path: "/webhook/penalty-disputed"
+    method: "POST"
+    description: "Triggered when penalty dispute is submitted"
+    payload_schema:
+      penalty_id: string
+      dispute_id: string
+      dispute_reason: string
+      submitted_at: string
+    workflow: "penalty_alert"
+  
+  # Reporting Triggers
+  on_daily_summary:
+    webhook_path: "/webhook/daily-kpi-report"
+    method: "POST"
+    description: "Triggered daily to generate KPI summary report"
+    payload_schema:
+      tenant_id: string
+      report_date: string
+      include_charts: boolean
+      email_recipients: array
+    workflow: "daily_kpi_report"
+    schedule: "0 8 * * *"  # Daily at 8 AM
+    
+  on_weekly_report:
+    webhook_path: "/webhook/weekly-report"
+    method: "POST"
+    description: "Triggered weekly for comprehensive report"
+    payload_schema:
+      tenant_id: string
+      week_start: string
+      week_end: string
+    workflow: "weekly_report"
+    schedule: "0 9 * * 1"  # Every Monday at 9 AM
+  
+  # Supplier Management Triggers
+  on_supplier_sync:
+    webhook_path: "/webhook/supplier-stock-sync"
+    method: "POST"
+    description: "Triggered to sync stock from supplier"
+    payload_schema:
+      supplier_id: string
+      product_ids: array
+      force_full_sync: boolean
+    workflow: "supplier_sync"
+    
+  # AI & Analytics Triggers
+  on_market_spike:
+    webhook_path: "/webhook/market-spike"
+    method: "POST"
+    description: "Triggered when market spike is detected"
+    payload_schema:
+      product_id: string
+      spike_type: string
+      spike_value: number
+      detected_at: string
+    workflow: "market_spike_alert"
+    
+  on_fraud_detected:
+    webhook_path: "/webhook/fraud-alert"
+    method: "POST"
+    description: "Triggered when fraud is detected in order"
+    payload_schema:
+      order_id: string
+      fraud_score: number
+      fraud_reasons: array
+      detected_at: string
+    workflow: "fraud_alert"
+
+# Webhook Authentication
+authentication:
+  type: "header"
+  header_name: "X-AsilParla-Webhook-Key"
+  env_var: "N8N_WEBHOOK_SECRET"
+  
+# Retry Configuration
+retry:
+  max_attempts: 3
+  backoff_multiplier: 2
+  initial_delay_seconds: 5
+
+
+
+
+
+
+
+
+
+
+
