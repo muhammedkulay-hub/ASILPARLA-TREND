@@ -1,0 +1,36 @@
+trendyol:
+  base_url: "https://api.trendyol.com/sapigw"
+  auth_mode: "apiKey"
+  api_key_env: "TRENDYOL_API_KEY"
+  enabled: true
+
+efatura:
+  base_url: "https://earsivportal.efatura.gov.tr"
+  auth_mode: "certificate"
+  cert_path: "config/certs/gib_client.pem"
+  enabled: true
+
+iyzico:
+  base_url: "https://api.iyzipay.com"
+  auth_mode: "apiKey"
+  api_key_env: "IYZICO_SECRET"
+  enabled: true
+
+cargo:
+  providers:
+    - name: "Aras"
+      base_url: "https://aras.kargoapi.com"
+      enabled: true
+    - name: "MNG"
+      base_url: "https://mngkargo.api.tr"
+      enabled: true
+    - name: "Yurtiçi"
+      base_url: "https://api.yurticikargo.com"
+      enabled: true
+
+parasut:
+  base_url: "https://api.parasut.com/v4"
+  auth_mode: "OAuth2"
+  client_id_env: "PARASUT_CLIENT_ID"
+  client_secret_env: "PARASUT_CLIENT_SECRET"
+  enabled: true
