@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "eslint": "^9.39.1"
+  },
+  "name": "asilparla",
+  "dependencies": {
+    "react-native": "^0.74.5",
+    "react-native-cli": "^2.0.1"
+  }
+}
