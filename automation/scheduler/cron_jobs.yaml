@@ -1,0 +1,30 @@
+# Cron Jobs - Zamanlanmış görevler
+# Bu dosya canonical cron jobs dosyasıdır
+
+jobs:
+  # Günlük finans raporu
+  daily_finance_report:
+    schedule: "0 9 * * *"  # Her gün 09:00
+    enabled: true
+    function: "automation.scheduler.jobs:daily_finance_report"
+    
+  # Sipariş senkronizasyonu
+  order_sync:
+    schedule: "*/15 * * * *"  # Her 15 dakikada bir
+    enabled: true
+    function: "automation.scheduler.jobs:order_sync"
+    
+  # Stok güncelleme
+  stock_update:
+    schedule: "0 */2 * * *"  # Her 2 saatte bir
+    enabled: true
+    function: "automation.scheduler.jobs:stock_update"
+    
+  # Market radar analizi
+  market_radar_analysis:
+    schedule: "0 2 * * *"  # Her gün 02:00
+    enabled: true
+    function: "automation.scheduler.jobs:market_radar_analysis"
+
+
+
