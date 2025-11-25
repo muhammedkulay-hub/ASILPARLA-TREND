@@ -1,0 +1,29 @@
+# Veritabanı Yapılandırması
+
+database:
+  # PostgreSQL bağlantı bilgileri
+  host: localhost
+  port: 5432
+  name: asilparla
+  user: postgres
+  password: postgres
+  
+  # Connection pool ayarları
+  pool:
+    size: 10
+    max_overflow: 20
+    pool_pre_ping: true
+  
+  # SSL ayarları (production için)
+  ssl:
+    enabled: false
+    mode: require  # disable, allow, prefer, require, verify-ca, verify-full
+
+# Alembic migration ayarları
+alembic:
+  script_location: alembic
+  sqlalchemy.url: postgresql+psycopg2://postgres:postgres@localhost:5432/asilparla
+
+# Not: Production ortamında şifreler environment variable'lardan alınmalıdır
+
+
