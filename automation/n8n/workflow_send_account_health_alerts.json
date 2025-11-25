@@ -1,0 +1,66 @@
+{
+  "name": "send_account_health_alerts",
+  "active": false,
+  "nodes": [
+    {
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [200, 220],
+      "parameters": {
+        "path": "account-health-alert",
+        "httpMethod": "POST"
+      }
+    },
+    {
+      "id": "health-request",
+      "name": "Account Health API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [470, 220],
+      "parameters": {
+        "url": "https://api.asilparla.local/api/ai/market-radar/summary",
+        "method": "GET",
+        "responseFormat": "json"
+      }
+    },
+    {
+      "id": "alert-node",
+      "name": "Email/SMS Alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [740, 220],
+      "parameters": {
+        "url": "https://notifications.example/send",
+        "method": "POST",
+        "jsonParameters": true,
+        "bodyParametersJson": "{\"subject\":\"Hesap Sağlığı Uyarısı\",\"payload\":\"={{$json}}\"}"
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Account Health API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Account Health API": {
+      "main": [
+        [
+          {
+            "node": "Email/SMS Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
