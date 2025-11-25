@@ -1,0 +1,73 @@
+{
+  "name": "generate_daily_finance_report",
+  "active": false,
+  "nodes": [
+    {
+      "id": "cron-daily",
+      "name": "06:00 Cron",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [220, 260],
+      "parameters": {
+        "triggerTimes": [
+          {
+            "mode": "everyDay",
+            "hour": 6,
+            "minute": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "finance-request",
+      "name": "Finance Report API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [500, 260],
+      "parameters": {
+        "url": "https://api.asilparla.local/api/reports/generate",
+        "method": "POST",
+        "responseFormat": "json",
+        "jsonParameters": true,
+        "bodyParametersJson": "{\"report_type\":\"daily_kpi\",\"requested_by\":\"n8n\"}"
+      }
+    },
+    {
+      "id": "notify-node",
+      "name": "Notification Hook",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [780, 260],
+      "parameters": {
+        "url": "https://hooks.slack.example/api/notify",
+        "method": "POST",
+        "jsonParameters": true,
+        "bodyParametersJson": "{\"message\":\"Günlük finans raporu hazır\"}"
+      }
+    }
+  ],
+  "connections": {
+    "06:00 Cron": {
+      "main": [
+        [
+          {
+            "node": "Finance Report API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Finance Report API": {
+      "main": [
+        [
+          {
+            "node": "Notification Hook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
