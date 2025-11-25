@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AsilParla - Güvenli Giriş</title>
+    <link rel="stylesheet" href="../shared/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: var(--primary);
+            --accent-color: var(--accent);
+            --bg-dark: var(--bg-deep);
+            --glass-bg: var(--bg-surface);
+            --glass-border: var(--glass-border);
+            --text-main: var(--text-main);
+            --text-muted: var(--text-dim);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+        body {
+            background-color: var(--bg-dark);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        /* --- Canlı Arka Plan Efekti (AI Hissiyatı) --- */
+        .background-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--primary-color), transparent 70%);
+            filter: blur(100px);
+            opacity: 0.4;
+            animation: moveGlow 15s infinite alternate;
+            z-index: 0;
+            top: -10%;
+            left: -10%;
+        }
+        
+        .background-glow:nth-child(2) {
+            background: radial-gradient(circle, var(--accent-color), transparent 70%);
+            top: auto;
+            bottom: -10%;
+            left: auto;
+            right: -10%;
+            animation-delay: -5s;
+        }
+        @keyframes moveGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.2); }
+        }
+        /* --- Ana Konteyner --- */
+        .login-container {
+            position: relative;
+            width: 1000px;
+            height: 600px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            overflow: hidden;
+            z-index: 10;
+        }
+        /* --- Sol Taraf (Görsel & AI Mesajı) --- */
+        .login-visual {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+            color: var(--text-main);
+            text-align: center;
+        }
+        .visual-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #fff, #c4b5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .ai-badge {
+            background: rgba(255,255,255,0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            display: inline-block;
+        }
+        /* --- Sağ Taraf (Form Alanı) --- */
+        .login-form-section {
+            flex: 1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .form-header h3 {
+            color: var(--text-main);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .form-header p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+        /* --- Input Alanları (Floating Label) --- */
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 15px 15px 15px 50px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+            background: rgba(15, 23, 42, 0.8);
+        }
+        .input-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            transition: 0.3s;
+        }
+        .input-field:focus + .input-icon {
+            color: var(--primary-color);
+        }
+        .toggle-password {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .toggle-password:hover { color: var(--text-main); }
+        /* --- Aksiyonlar (Unuttum / Hatırla) --- */
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        .checkbox-container input { accent-color: var(--primary-color); }
+        .forgot-pass {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        
+        .forgot-pass:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(168, 85, 247, 0.4); }
+        /* --- Butonlar --- */
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .btn-primary:hover::after { left: 100%; }
+        .btn-primary:disabled {
+            opacity: 0.8;
+            cursor: not-allowed;
+        }
+        /* --- Google ile Giriş --- */
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 25px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .divider span { margin: 0 10px; }
+        .btn-google {
+            width: 100%;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+        .btn-google:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255,255,255,0.3);
+        }
+        /* --- Error Message --- */
+        .error-message {
+            padding: 12px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            color: #FCA5A5;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 15px;
+            display: none;
+        }
+        /* --- Responsive --- */
+        @media (max-width: 900px) {
+            .login-container { width: 90%; height: auto; flex-direction: column; }
+            .login-visual { padding: 30px; min-height: 200px; }
+            .login-form-section { padding: 30px; }
+        }
+        /* Animasyonlu Loader */
+        .loader {
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: none;
+            margin-left: 10px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="background-glow"></div>
+    <div class="background-glow"></div>
+    <div class="login-container">
+        <div class="login-visual">
+            <div class="ai-badge"><i class="fa-solid fa-brain"></i> AsilParla AI Engine v2.1</div>
+            <h2>Geleceği Yönetmeye Hazır Mısın?</h2>
+            <p style="opacity: 0.8; margin-top: 10px; max-width: 80%;">
+                E-ticaret operasyonlarınızın arkasındaki zeka. Verilerinizi analiz eder, riskleri önler ve büyümenizi hızlandırır.
+            </p>
+            <div style="margin-top: 40px; font-size: 5rem; color: rgba(255,255,255,0.1);">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+        </div>
+        <div class="login-form-section">
+            <div class="form-header">
+                <h3>Hoş Geldiniz</h3>
+                <p>Hesabınıza erişmek için bilgilerinizi girin.</p>
+            </div>
+            <form id="loginForm">
+                <div class="input-group">
+                    <i class="fa-regular fa-envelope input-icon"></i>
+                    <input type="email" id="email" class="input-field" placeholder="E-posta Adresiniz" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <input type="password" id="password" class="input-field" placeholder="Şifreniz" required>
+                    <i class="fa-regular fa-eye toggle-password" id="togglePassword"></i>
+                </div>
+                <div class="form-actions">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="remember"> Beni Hatırla
+                    </label>
+                    <a href="#" class="forgot-pass">Şifremi Unuttum?</a>
+                </div>
+                <button type="submit" class="btn-primary" id="submitBtn">
+                    <span id="btnText">Giriş Yap</span>
+                    <div class="loader" id="btnLoader"></div>
+                </button>
+                <div id="errorMessage" class="error-message"></div>
+            </form>
+            <div class="divider">
+                <span>veya şununla devam et</span>
+            </div>
+            <button type="button" class="btn-google" id="googleLoginBtn">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" width="20" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                <span style="display:none;"><i class="fa-brands fa-google"></i></span>
+                Google ile Giriş Yap
+            </button>
+            
+            <p style="text-align: center; margin-top: 20px; font-size: 0.8rem; color: var(--text-muted);">
+                Henüz hesabınız yok mu? <a href="#" id="registerLink" style="color: var(--accent-color); text-decoration: none;">Başvuru Yap</a>
+            </p>
+        </div>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>
