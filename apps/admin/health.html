@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AsilParla - Sistem Sağlığı</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>AsilParla</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="ai_panel.html" class="nav-item">
+                    <span>🤖</span> AI Panel
+                </a>
+                <a href="billing.html" class="nav-item">
+                    <span>💰</span> Faturalandırma
+                </a>
+                <a href="health.html" class="nav-item active">
+                    <span>🏥</span> Sistem Sağlığı
+                </a>
+                <a href="logs.html" class="nav-item">
+                    <span>📝</span> Loglar
+                </a>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <header class="top-header">
+                <h1>Sistem Sağlığı</h1>
+                <div class="header-actions">
+                    <span id="userEmail"></span>
+                    <button class="logout-button" onclick="window.location.href='login.html'">Çıkış</button>
+                </div>
+            </header>
+            
+            <div class="health-status" id="healthStatus">
+                <div class="loading-spinner"></div>
+            </div>
+        </main>
+    </div>
+    
+    <script>
+        const API_BASE_URL = window.location.origin.includes('localhost') 
+            ? 'http://localhost:8000' 
+            : 'https://api.asilparla.com';
+        
+        const authToken = localStorage.getItem('token') || sessionStorage.getItem('token');
+        
+        if (!authToken) {
+            window.location.href = 'login.html';
+        }
+        
+        async function loadHealth() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/v1/health/detailed`, {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                
+                const data = await response.json();
+                
+                document.getElementById('healthStatus').innerHTML = `
+                    <div class="kpi-grid">
+                        <div class="kpi-card">
+                            <div class="kpi-label">Genel Durum</div>
+                            <div class="kpi-value">${data.status || 'unknown'}</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-label">CPU Kullanımı</div>
+                            <div class="kpi-value">${data.system?.cpu_percent || 0}%</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-label">Bellek Kullanımı</div>
+                            <div class="kpi-value">${data.system?.memory_percent || 0}%</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-label">Veritabanı</div>
+                            <div class="kpi-value">${data.database?.status || 'unknown'}</div>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                document.getElementById('healthStatus').innerHTML = 
+                    '<div class="alert alert-error">Sağlık bilgisi yüklenemedi</div>';
+            }
+        }
+        
+        loadHealth();
+        setInterval(loadHealth, 30000);
+    </script>
+</body>
+</html>
