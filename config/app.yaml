@@ -1,0 +1,52 @@
+# Uygulama Yapılandırması
+
+app:
+  name: "AsilParla API"
+  version: "1.17.02"
+  environment: development  # development, staging, production
+  debug: true
+  
+  # API ayarları
+  api:
+    prefix: "/api/v1"
+    host: "0.0.0.0"
+    port: 8000
+    docs_enabled: true
+    redoc_enabled: true
+  
+  # CORS ayarları
+  cors:
+    origins:
+      - "http://localhost:3000"
+      - "http://localhost:8080"
+      - "http://localhost:5173"
+    allow_credentials: true
+    allow_methods: ["*"]
+    allow_headers: ["*"]
+  
+  # JWT ayarları
+  jwt:
+    secret: "change-me-jwt-secret-key"  # Production'da güçlü bir key kullanın
+    algorithm: "HS256"
+    access_token_expire_minutes: 60
+  
+  # Logging
+  logging:
+    level: INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    file: "logs/api.log"
+  
+  # Rate limiting
+  rate_limit:
+    enabled: false
+    requests_per_minute: 60
+  
+  # Feature flags
+  features:
+    market_radar_enabled: true
+    ai_pricing_enabled: true
+    automation_enabled: true
+
+# Not: Production ortamında secret key'ler environment variable'lardan alınmalıdır
+
+
