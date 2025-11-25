@@ -1,0 +1,61 @@
+{
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "add": "Ekle",
+    "search": "Ara",
+    "filter": "Filtrele",
+    "close": "Kapat",
+    "confirm": "Onayla",
+    "back": "Geri"
+  },
+  "auth": {
+    "login": "Giriş Yap",
+    "register": "Kayıt Ol",
+    "email": "E-posta",
+    "password": "Şifre",
+    "forgotPassword": "Şifremi Unuttum",
+    "loginSuccess": "Giriş başarılı",
+    "loginError": "Giriş başarısız",
+    "logout": "Çıkış Yap"
+  },
+  "products": {
+    "title": "Ürünler",
+    "addProduct": "Ürün Ekle",
+    "editProduct": "Ürün Düzenle",
+    "productDetail": "Ürün Detayı",
+    "productList": "Ürün Listesi",
+    "noProducts": "Ürün bulunamadı"
+  },
+  "orders": {
+    "title": "Siparişler",
+    "createOrder": "Sipariş Oluştur",
+    "orderDetail": "Sipariş Detayı",
+    "orderList": "Sipariş Listesi",
+    "noOrders": "Sipariş bulunamadı"
+  },
+  "reports": {
+    "title": "Raporlar",
+    "salesReport": "Satış Raporu",
+    "financeReport": "Finans Raporu",
+    "generateReport": "Rapor Oluştur"
+  },
+  "notifications": {
+    "title": "Bildirimler",
+    "noNotifications": "Bildirim yok",
+    "markAllRead": "Tümünü Okundu İşaretle"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "profile": "Profil",
+    "notifications": "Bildirimler",
+    "language": "Dil",
+    "theme": "Tema"
+  }
+}
+
