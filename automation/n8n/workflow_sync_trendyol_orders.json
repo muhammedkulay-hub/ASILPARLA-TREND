@@ -1,0 +1,73 @@
+{
+  "name": "sync_trendyol_orders",
+  "active": false,
+  "nodes": [
+    {
+      "id": "cron-node",
+      "name": "15 Dakika Cron",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "triggerTimes": [
+          {
+            "mode": "everyX",
+            "every": 15,
+            "unit": "minutes"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orders-request",
+      "name": "AsilParla Orders API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [520, 300],
+      "parameters": {
+        "url": "https://api.asilparla.local/api/orders/sync",
+        "method": "POST",
+        "responseFormat": "json",
+        "jsonParameters": true,
+        "options": {
+          "timeout": 30
+        },
+        "bodyParametersJson": "{\"source\":\"trendyol\",\"runBy\":\"n8n\"}"
+      }
+    },
+    {
+      "id": "log-node",
+      "name": "Execution Log",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [780, 300],
+      "parameters": {
+        "functionCode": "return [{ json: { status: 'queued', info: items[0].json } }];"
+      }
+    }
+  ],
+  "connections": {
+    "15 Dakika Cron": {
+      "main": [
+        [
+          {
+            "node": "AsilParla Orders API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AsilParla Orders API": {
+      "main": [
+        [
+          {
+            "node": "Execution Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
