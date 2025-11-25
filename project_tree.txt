@@ -1,0 +1,544 @@
+ASILPARLA-FINAL PROJE AĞAÇ YAPISI
+==================================
+Derinlik: 5 seviye
+Tarih: 2024-11-24
+
+AsilParla-FINAL/
+|
++-- accessibility/
+|   +-- screen_reader.js
+|   +-- voice_commands.js
+|   +-- a11y_checklist.md
+|   +-- lighthouse_config.json
+|
++-- apps/
+|   +-- admin/
+|   |   +-- ai_panel.html
+|   |   +-- ai_panel.js
+|   |   +-- billing.html
+|   |   +-- dashboard.css
+|   |   +-- dashboard.html
+|   |   +-- dashboard.js
+|   |   +-- health.html
+|   |   +-- login.css
+|   |   +-- login.html
+|   |   +-- login.js
+|   |   +-- logs.html
+|   |   +-- mock_auth.py
+|   |   +-- assets/
+|   |   |   +-- css/
+|   |   |   |   +-- components.css
+|   |   |   |   +-- main.css
+|   |   |   |   +-- variables.css
+|   |   |   +-- icons/
+|   |   |   |   +-- menu.svg
+|   |   |   +-- images/
+|   |   |       +-- logo.png
+|   |   +-- components/
+|   |   |   +-- charts/
+|   |   |   |   +-- ProfitChart.js
+|   |   |   |   +-- RevenueChart.js
+|   |   |   |   +-- SalesTrend.js
+|   |   |   +-- forms/
+|   |   |   |   +-- ProductForm.js
+|   |   |   |   +-- SettingForm.js
+|   |   |   |   +-- UserForm.js
+|   |   |   +-- tables/
+|   |   |   |   +-- DataTable.js
+|   |   |   |   +-- OrderTable.js
+|   |   |   |   +-- UserTable.js
+|   |   |   +-- widgets/
+|   |   |       +-- AlertBanner.js
+|   |   |       +-- KPICard.js
+|   |   |       +-- QuickActions.js
+|   |   +-- screens/
+|   |       +-- AdminDashboard.js
+|   |       +-- AIInsights.js
+|   |       +-- Billing.js
+|   |       +-- Logs.js
+|   |       +-- MarketRadar.js
+|   |       +-- SystemHealth.js
+|   |       +-- Tenants.js
+|   |
+|   +-- mobile/
+|       +-- App.js
+|       +-- app.json
+|       +-- babel.config.js
+|       +-- index.js
+|       +-- metro.config.js
+|       +-- package.json
+|       +-- package-lock.json
+|       +-- react-native.config.js
+|       +-- android/
+|       |   +-- app/
+|       |   |   +-- build.gradle
+|       |   |   +-- src/
+|       |   |       +-- main/
+|       |   |           +-- AndroidManifest.xml
+|       |   |           +-- java/
+|       |   |           |   +-- com/
+|       |   |           |       +-- tempproject/
+|       |   |           |           +-- MainActivity.kt
+|       |   |           |           +-- MainApplication.kt
+|       |   |           +-- res/
+|       |   |               +-- values/
+|       |   |               |   +-- strings.xml
+|       |   |               |   +-- styles.xml
+|       |   |               +-- mipmap-*/
+|       |   +-- build.gradle
+|       |   +-- settings.gradle
+|       |   +-- gradle.properties
+|       +-- assets/
+|       |   +-- animations/
+|       |   |   +-- loading.json
+|       |   +-- fonts/
+|       |   |   +-- inter.ttf
+|       |   +-- icons/
+|       |   |   +-- home.svg
+|       |   +-- images/
+|       |   |   +-- logo.png
+|       |   +-- sounds/
+|       |       +-- notification.mp3
+|       +-- src/
+|           +-- api/
+|           |   +-- auth.js
+|           |   +-- orders.js
+|           |   +-- products.js
+|           |   +-- reports.js
+|           |   +-- trendyol.js
+|           +-- components/
+|           |   +-- charts/
+|           |   |   +-- BarChart.js
+|           |   |   +-- LineChart.js
+|           |   +-- common/
+|           |   |   +-- Card.js
+|           |   |   +-- Footer.js
+|           |   |   +-- Header.js
+|           |   +-- forms/
+|           |   |   +-- Button.js
+|           |   |   +-- Input.js
+|           |   +-- layout/
+|           |   |   +-- Footer.js
+|           |   |   +-- Header.js
+|           |   |   +-- Sidebar.js
+|           |   +-- loaders/
+|           |   |   +-- LoadingSpinner.js
+|           |   |   +-- SkeletonLoader.js
+|           |   +-- modals/
+|           |       +-- ConfirmationModal.js
+|           |       +-- FilterModal.js
+|           +-- constants/
+|           |   +-- colors.js
+|           |   +-- config.js
+|           +-- hooks/
+|           |   +-- redux.js
+|           |   +-- useAuth.js
+|           |   +-- useNotifications.js
+|           |   +-- useOrders.js
+|           |   +-- useProducts.js
+|           |   +-- useReports.js
+|           +-- i18n/
+|           |   +-- config.js
+|           |   +-- en.json
+|           |   +-- tr.json
+|           +-- navigation/
+|           |   +-- AppNavigator.js
+|           |   +-- AuthNavigator.js
+|           +-- screens/
+|           |   +-- account-health/
+|           |   |   +-- HealthScreen.js
+|           |   |   +-- PerformanceScreen.js
+|           |   +-- auth/
+|           |   |   +-- ForgotPasswordScreen.js
+|           |   |   +-- LoginScreen.js
+|           |   |   +-- RegisterScreen.js
+|           |   +-- dashboard/
+|           |   |   +-- AnalyticsScreen.js
+|           |   |   +-- HomeScreen.js
+|           |   +-- help/
+|           |   |   +-- HelpScreen.js
+|           |   +-- notifications/
+|           |   |   +-- NotificationScreen.js
+|           |   +-- orders/
+|           |   |   +-- CreateOrderScreen.js
+|           |   |   +-- OrderDetailScreen.js
+|           |   |   +-- OrderListScreen.js
+|           |   +-- products/
+|           |   |   +-- AddProductScreen.js
+|           |   |   +-- EditProductScreen.js
+|           |   |   +-- ProductDetailScreen.js
+|           |   |   +-- ProductListScreen.js
+|           |   +-- reports/
+|           |   |   +-- FinanceReportScreen.js
+|           |   |   +-- ReportScreen.js
+|           |   |   +-- SalesReportScreen.js
+|           |   +-- settings/
+|           |   |   +-- NotificationSettings.js
+|           |   |   +-- ProfileScreen.js
+|           |   |   +-- SettingsScreen.js
+|           |   +-- supplier/
+|           |   |   +-- SupplierScreen.js
+|           |   +-- AdminDashboard.js
+|           |   +-- AIInsights.js
+|           |   +-- Billing.js
+|           |   +-- Logs.js
+|           |   +-- MarketRadar.js
+|           |   +-- SystemHealth.js
+|           |   +-- Tenants.js
+|           +-- store/
+|           |   +-- authSlice.js
+|           |   +-- index.js
+|           |   +-- notificationSlice.js
+|           |   +-- orderSlice.js
+|           |   +-- productSlice.js
+|           |   +-- reportSlice.js
+|           |   +-- settingsSlice.js
+|           +-- theme/
+|           |   +-- colors.js
+|           |   +-- fonts.js
+|           |   +-- spacing.js
+|           +-- utils/
+|               +-- calculators.js
+|               +-- helpers.js
+|               +-- validators.js
+|
++-- automation/
+|   +-- n8n_client.py
+|   +-- market_spike.py
+|   +-- n8n/
+|   |   +-- workflows.yaml
+|   |   +-- README.md
+|   |   +-- (diğer n8n dosyaları)
+|   +-- scheduler/
+|   |   +-- cron_jobs.yaml
+|   |   +-- crons.yaml
+|   |   +-- daily_finance_report_scheduler.py
+|   |   +-- job_runner.py
+|   |   +-- jobs.py
+|   |   +-- order_sync_scheduler.py
+|   |   +-- tasks.py
+|   +-- triggers/
+|   |   +-- alerts.py
+|   |   +-- events.py
+|   |   +-- manual_triggers.py
+|   |   +-- market_spike.py
+|   |   +-- notifications.py
+|   +-- logs/
+|
++-- backup/
+|   +-- cleanup.sh
+|   +-- rotate.sh
+|   +-- verify_backup.py
+|   +-- verify.sh
+|   +-- daily/
+|   +-- monthly/
+|
++-- compliance/
+|   +-- audits/
+|   |   +-- compliance_check.py
+|   |   +-- log_audit.py
+|   |   +-- reporter.py
+|   +-- edefter/
+|   |   +-- generator.py
+|   |   +-- template.xml
+|   |   +-- validator.py
+|   +-- kvkk/
+|   |   +-- consent_form.yaml
+|   |   +-- data_processor.py
+|   |   +-- policy.md
+|
++-- config/
+|   +-- ai_thresholds.json
+|   +-- api_endpoints.yaml
+|   +-- api_manifest.yaml
+|   +-- app.yaml                    [DOLDURULDU]
+|   +-- cache.yaml
+|   +-- database.yaml               [DOLDURULDU]
+|   +-- feature_flags.yaml
+|   +-- pricing_rules.yaml
+|   +-- queue.yaml
+|   +-- settings.yaml
+|   +-- alerts/
+|   |   +-- channels.yaml
+|   |   +-- kpi_thresholds.yaml
+|   +-- limits/
+|   |   +-- quotas.yaml
+|   |   +-- rate_limits.yaml
+|   +-- onboarding/
+|   |   +-- tips.json
+|   |   +-- wizard_steps.yaml
+|   +-- policies/
+|   |   +-- ai_policy_radar.yaml
+|   |   +-- consent_flags.yaml
+|   |   +-- legal_compliance.yaml
+|   |   +-- market_radar_rules.yaml  [YENİ EKLENDİ]
+|   |   +-- privacy.yaml
+|   |   +-- risk_matrix.yaml
+|   |   +-- trendyol_rules.yaml
+|   +-- report_presets/
+|   |   +-- finance_monthly.yaml
+|   |   +-- kpi_daily.yaml
+|   |   +-- returns_cohort.yaml
+|   +-- tenancy/
+|       +-- index_plan.sql
+|       +-- isolation_policy.md
+|
++-- docker/
+|   +-- docker-compose.yml
+|   +-- Dockerfile.api
+|   +-- Dockerfile.worker
+|   +-- entrypoint.sh
+|   +-- healthcheck.sh
+|   +-- init_db.sql
+|   +-- nginx.conf
+|   +-- supervisord.conf
+|   +-- wait-for-it.sh
+|
++-- docs/
+|   +-- api/
+|   |   +-- authentication.md
+|   |   +-- endpoints.md
+|   |   +-- errors.md
+|   +-- architecture.md
+|   +-- development/
+|   |   +-- code_style.md
+|   |   +-- contributing.md
+|   |   +-- deployment.md
+|   |   +-- testing.md
+|   +-- ha_failover.md
+|   +-- observability.md
+|   +-- onboarding/
+|   |   +-- quick_start.md
+|   |   +-- seller_checklist.md
+|   +-- readiness_checklist.md
+|   +-- scaling_plan.md
+|   +-- user_guide/
+|       +-- faq.md
+|       +-- getting_started.md
+|       +-- troubleshooting.md
+|
++-- i18n/
+|   +-- formats/
+|   |   +-- currency.yaml
+|   |   +-- date.yaml
+|   |   +-- number.yaml
+|   |   +-- time.yaml
+|   +-- locales/
+|       +-- de.yaml
+|       +-- en.yaml
+|       +-- fr.yaml
+|       +-- tr.yaml
+|
++-- legal/
+|   +-- kep_info.txt
+|   +-- kvkk.txt
+|   +-- merchant_policy.txt
+|   +-- privacy.txt
+|   +-- tos.txt
+|
++-- monitoring/
+|   +-- alert_rules.yaml
+|   +-- alerts_rules.yaml
+|   +-- alerts.py
+|   +-- anomaly_detector.py
+|   +-- cpu_memory_watch.py
+|   +-- dashboard.py
+|   +-- health_check.py
+|   +-- latency_reporter.py
+|   +-- metrics_collector.py
+|   +-- performance_metrics.py
+|   +-- reports.py
+|   +-- system_metrics.yaml
+|   +-- uptime_check.py
+|
++-- scripts/
+|   +-- backup.sh
+|   +-- cleanup.sh
+|   +-- deploy.sh
+|   +-- health.sh
+|   +-- init.sh
+|   +-- migrate.sh
+|   +-- monitor.sh
+|   +-- restore.sh
+|   +-- setup_env.sh
+|   +-- start_all.sh
+|   +-- stop_all.sh
+|   +-- update.sh
+|
++-- services/
+|   +-- api/
+|       +-- app/
+|           +-- ai/
+|           |   +-- market_radar/        [YENİ EKLENDİ]
+|           |       +-- __init__.py
+|           |       +-- analyzer.py
+|           |       +-- data_collector.py
+|           |       +-- report_engine.py
+|           |       +-- schemas.py
+|           +-- connectors/               [BOŞ - implementasyon gerekiyor]
+|           +-- core/                    [YENİ EKLENDİ]
+|           |   +-- __init__.py
+|           |   +-- config.py
+|           |   +-- database.py
+|           |   +-- security.py
+|           +-- models/                  [YENİ EKLENDİ]
+|           |   +-- __init__.py
+|           |   +-- order.py
+|           |   +-- product.py
+|           |   +-- user.py
+|           +-- routers/                 [YENİ EKLENDİ]
+|           |   +-- __init__.py
+|           |   +-- auth.py
+|           |   +-- market_radar.py
+|           |   +-- orders.py
+|           |   +-- products.py
+|           +-- schemas/                 [YENİ EKLENDİ]
+|           |   +-- __init__.py
+|           |   +-- auth.py
+|           |   +-- order.py
+|           |   +-- product.py
+|           +-- services/                [YENİ EKLENDİ]
+|           |   +-- __init__.py
+|           |   +-- auth_service.py
+|           |   +-- order_service.py
+|           |   +-- product_service.py
+|           +-- main.py                  [GÜNCELLENDİ]
+|
++-- system_enhancements/
+|   +-- api_gateway/
+|   |   +-- gateway_main.py
+|   |   +-- gateway_config.yaml
+|   |   +-- routes/
+|   |   |   +-- ai_routes.py
+|   |   |   +-- auth_routes.py
+|   |   |   +-- finance_routes.py
+|   |   |   +-- product_routes.py
+|   |   +-- middlewares/
+|   |       +-- jwt_forwarder.py
+|   |       +-- rate_limiter.py
+|   |   +-- __init__.py
+|   +-- circuit_breaker/
+|   |   +-- api_wrapper.py
+|   |   +-- breaker.py
+|   |   +-- fallback_handler.py
+|   |   +-- __init__.py
+|   +-- configuration_management/
+|   |   +-- config_loader.py
+|   |   +-- config_service.py
+|   |   +-- config_validator.py
+|   |   +-- __init__.py
+|   +-- performance_monitoring/
+|   |   +-- apm_agent.py
+|   |   +-- apm_config.yaml
+|   |   +-- performance_dashboard.py
+|   |   +-- telemetry_collector.py
+|   |   +-- __init__.py
+|   +-- secret_management/
+|       +-- encrypt_util.py
+|       +-- keyring_adapter.py
+|       +-- secrets_encrypted.json
+|       +-- vault_client.py
+|       +-- __init__.py
+|
++-- tests/
+|   +-- __init__.py
+|   +-- conftest.py
+|   +-- e2e/
+|   |   +-- test_error_recovery.py
+|   |   +-- test_full_flow.py
+|   |   +-- test_market_radar_flow.py
+|   |   +-- test_mobile.py
+|   |   +-- test_workflow.py
+|   |   +-- __init__.py
+|   +-- integration/
+|   |   +-- test_api_endpoints.py
+|   |   +-- test_cargo.py
+|   |   +-- test_efatura.py
+|   |   +-- test_iyzico.py
+|   |   +-- test_market_radar_api.py
+|   |   +-- test_supplier_sync.py
+|   |   +-- test_trendyol.py
+|   |   +-- test_trendyol_connector.py
+|   |   +-- __init__.py
+|   +-- performance/
+|   |   +-- load_test.py
+|   |   +-- stress_test.py
+|   |   +-- __init__.py
+|   +-- unit/
+|   |   +-- test_auth.py
+|   |   +-- test_finance.py
+|   |   +-- test_market_radar.py
+|   |   +-- test_orders.py
+|   |   +-- test_products.py
+|   |   +-- __init__.py
+|
++-- tools/
+|   +-- exporters/
+|   |   +-- csv_xlsx_pdf.py
+|   |   +-- data_exporter.py
+|   |   +-- excel_exporter.py
+|   |   +-- market_report_export.py
+|   |   +-- pdf_exporter.py
+|   |   +-- __init__.py
+|   +-- locks/
+|   |   +-- distributed_lock.py
+|   |   +-- overlap_lock_wrapper.py
+|   |   +-- redis_lock.py
+|   |   +-- __init__.py
+|   +-- queue/
+|   |   +-- dlq_publisher.py
+|   |   +-- redis_queue.py
+|   |   +-- task_queue.py
+|   |   +-- __init__.py
+|   +-- validators/
+|       +-- data_validator.py
+|       +-- json_validator.py
+|       +-- payload_schema.json
+|       +-- schema_validator.py
+|       +-- __init__.py
+|
++-- tools_deployment/
+|   +-- termux/
+|   |   +-- configure.sh
+|   |   +-- install.sh
+|   |   +-- setup.sh
+|   +-- ubuntu/
+|       +-- bootstrap.sh
+|       +-- deploy.sh
+|       +-- monitor.sh
+|       +-- setup.sh
+|
++-- Kök Dosyalar:
++-- main.py
++-- requirements.txt
++-- package.json
++-- pyproject.toml
++-- README.md
++-- LICENSE
++-- SECURITY.md
++-- changelog.txt
++-- docker-compose.dev.yml
++-- docker-compose.prod.yml
++-- Makefile
++-- Procfile
++-- babel.config.js
++-- eslint.config.js
++-- jsconfig.json
++-- pyrightconfig.json
++-- react-native.config.js
+-- BIRLESTIRME_RAPORU.md
+-- BACKEND_IMPLEMENTATION_RAPORU.md
+-- PROJECT_TREE.txt (bu dosya)
+
+NOTLAR:
+======
+[YENİ EKLENDİ] = Yeni oluşturulan dosya/klasör
+[DOLDURULDU] = Boş olan dosya dolduruldu
+[BOŞ] = Implementasyon gerekiyor
+
+Toplam Dosya: ~1,054
+Backend API: ✅ TAMAMLANDI
+MarketRadar: ✅ EKLENDİ
+Config Dosyaları: ✅ DOLDURULDU
+
+
