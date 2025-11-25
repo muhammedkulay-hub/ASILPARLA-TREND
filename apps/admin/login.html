@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>AsilParla | Güvenli Erişim</title>
+    <link rel="stylesheet" href="../shared/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { display:flex; justify-content:center; align-items:center; }
+        .form-panel { display: none; animation: fadeIn 0.4s ease-out; height: 100%; flex-direction: column; justify-content: center; }
+        .form-panel.active { display: flex; }
+        .login-container { width: 1100px; height: 650px; display: flex; border-radius: 24px; overflow: hidden; }
+    </style>
+</head>
+<body>
+    <div class="glass-panel fade-in login-container">
+        <div style="flex: 1.1; background: linear-gradient(160deg, rgba(99,102,241,0.1), rgba(0,0,0,0)); padding: 60px; display: flex; flex-direction: column; position: relative;">
+            <div class="badge ai" style="position: absolute; top: 40px; left: 40px;">
+                <i class="fa-solid fa-brain"></i> AsilParla Neural Core v5.1
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+                <div style="font-size: 4rem; margin-bottom: 10px; color: var(--admin);">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h1 style="font-size: 3rem; line-height: 1.1; margin-bottom: 20px; background: linear-gradient(to right, #fff, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    Admin<br>Kontrol Paneli
+                </h1>
+                <p style="color: var(--text-dim); max-width: 80%;">Sistem yönetimi ve izleme merkezi.</p>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--glass-border); padding-top: 20px;">
+                <div style="text-align: center;"><div style="color: var(--success); font-weight:700;">%99.9</div><div style="font-size:0.7rem; color:var(--text-dim);">Uptime</div></div>
+                <div style="text-align: center;"><div style="color: var(--admin); font-weight:700;">25ms</div><div style="font-size:0.7rem; color:var(--text-dim);">Latency</div></div>
+                <div style="text-align: center;"><div style="color: var(--accent); font-weight:700;">Secure</div><div style="font-size:0.7rem; color:var(--text-dim);">Vault</div></div>
+            </div>
+        </div>
+        <div style="flex: 0.9; padding: 60px; background: rgba(0,0,0,0.4); position: relative;">
+            <div id="loginSection" class="form-panel active">
+                <h2 style="font-size: 2rem; margin-bottom: 10px;">Yönetici Girişi</h2>
+                <p style="color: var(--text-dim); margin-bottom: 30px;">Sisteme erişim için kimlik doğrulama gerekli.</p>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <i class="fa-regular fa-envelope input-icon"></i>
+                        <input type="email" id="email" class="input-field" placeholder="E-posta Adresi" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-lock input-icon"></i>
+                        <input type="password" id="password" class="input-field" placeholder="Şifre" required>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:30px; font-size:0.9rem;">
+                        <label style="color:var(--text-dim); cursor:pointer;"><input type="checkbox" id="remember"> Beni Hatırla</label>
+                        <a href="#" class="link-action">Şifremi Unuttum?</a>
+                    </div>
+                    <button type="submit" class="btn-neon" style="width:100%;">Giriş Yap <i class="fa-solid fa-arrow-right"></i></button>
+                    <div id="errorMessage" style="margin-top:15px; padding:12px; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.3); border-radius:8px; color:#FCA5A5; font-size:0.9rem; display:none;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>
