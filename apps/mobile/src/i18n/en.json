@@ -1,0 +1,61 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "close": "Close",
+    "confirm": "Confirm",
+    "back": "Back"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password",
+    "loginSuccess": "Login successful",
+    "loginError": "Login failed",
+    "logout": "Logout"
+  },
+  "products": {
+    "title": "Products",
+    "addProduct": "Add Product",
+    "editProduct": "Edit Product",
+    "productDetail": "Product Detail",
+    "productList": "Product List",
+    "noProducts": "No products found"
+  },
+  "orders": {
+    "title": "Orders",
+    "createOrder": "Create Order",
+    "orderDetail": "Order Detail",
+    "orderList": "Order List",
+    "noOrders": "No orders found"
+  },
+  "reports": {
+    "title": "Reports",
+    "salesReport": "Sales Report",
+    "financeReport": "Finance Report",
+    "generateReport": "Generate Report"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "noNotifications": "No notifications",
+    "markAllRead": "Mark All as Read"
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": "Profile",
+    "notifications": "Notifications",
+    "language": "Language",
+    "theme": "Theme"
+  }
+}
+
