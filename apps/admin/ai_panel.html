@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AsilParla - AI Panel</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>AsilParla</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="ai_panel.html" class="nav-item active">
+                    <span>🤖</span> AI Panel
+                </a>
+                <a href="billing.html" class="nav-item">
+                    <span>💰</span> Faturalandırma
+                </a>
+                <a href="health.html" class="nav-item">
+                    <span>🏥</span> Sistem Sağlığı
+                </a>
+                <a href="logs.html" class="nav-item">
+                    <span>📝</span> Loglar
+                </a>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <header class="top-header">
+                <h1>AI Panel</h1>
+                <div class="header-actions">
+                    <span id="userEmail"></span>
+                    <button class="logout-button" onclick="window.location.href='login.html'">Çıkış</button>
+                </div>
+            </header>
+            
+            <div class="ai-controls">
+                <div class="timeframe-selector">
+                    <label>Zaman Aralığı:</label>
+                    <select id="timeframeSelect">
+                        <option value="7">Son 7 Gün</option>
+                        <option value="30" selected>Son 30 Gün</option>
+                        <option value="90">Son 90 Gün</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="loadAIInsights()">Analiz Et</button>
+                </div>
+            </div>
+            
+            <div class="ai-results" id="aiResults">
+                <div class="loading-spinner"></div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="ai_panel.js"></script>
+</body>
+</html>
