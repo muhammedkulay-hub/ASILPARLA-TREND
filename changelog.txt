@@ -1,0 +1,2 @@
+v1.17.02 - Initial public drop of scaffold; config and Docker stacks defined.
+v1.17.03 - Test altyapısı, gateway endpointleri ve admin panel entegrasyonu güçlendirildi.
